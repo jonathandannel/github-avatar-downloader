@@ -1,0 +1,23 @@
+{
+  "name": "firstproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathandannel/github_av_downloader.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathandannel/github_av_downloader/issues"
+  },
+  "homepage": "https://github.com/jonathandannel/github_av_downloader#readme",
+  "dependencies": {
+    "request": "^2.87.0"
+  }
+}
