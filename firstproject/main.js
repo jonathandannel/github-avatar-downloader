@@ -18,17 +18,21 @@ var saveAvatar = function(img, name) {
          .pipe(fs.createWriteStream('./avatars/' + name + '.png'))
 };
 
-request.get(options, function(error, response, body) {
-  if (error) {
-    console.log("Error! Aborting");
-    throw err;
-  } else {
-    var rawData = JSON.parse(body);
-    console.log(rawData);
-    rawData.forEach(function(element) {
-      var avatarUrl = element.avatar_url;
-      var avatarName = element.login;
-      saveAvatar(avatarUrl, avatarName)
-    });
-  }
-});
+var getAvatars = function(options, save) {
+  request.get(options, function(error, response, body) {
+    if (error) {
+      console.log("Error! Aborting");
+      throw err;
+    } else {
+      var rawData = JSON.parse(body);
+      console.log(rawData);
+      rawData.forEach(function(element) {
+        var avatarUrl = element.avatar_url;
+        var avatarName = element.login;
+        saveAvatar(avatarUrl, avatarName)
+      });
+    }
+  });
+}
+
+getAvatars(options, saveAvatar);
