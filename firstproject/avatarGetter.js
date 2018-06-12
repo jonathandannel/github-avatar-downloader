@@ -16,7 +16,7 @@ var options = {
 var saveAvatar = function(url, name) {
   request.get(url)
          .on('response', function() {
-           process.stdout.write('Downloading avatar for user => ' + name + '\n');
+           process.stdout.write('Downloading avatar for user => ' + name + ' to "./avatars" \n');
          })
          .pipe(fs.createWriteStream('./avatars/' + name + '.png'))
 };
@@ -35,4 +35,4 @@ var getAvatars = function(options, save) {
   });
 }
 
-process.argv.slice(2).length === 2 ? getAvatars(options, saveAvatar) : console.log("ERROR: Only 2 arguments allowed: 'REPO_OWNER', 'REPO_NAME'");
+process.argv.slice(2).length === 2 ? getAvatars(options, saveAvatar) : console.log("ERROR: Arguments must be in the form of 'repo_owner' 'repo_name'. Ex: node avatar_get.js facebook react");
