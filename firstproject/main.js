@@ -1,15 +1,15 @@
-var repositoryOwner = process.argv.slice(2)[0];
-var repositoryName = process.argv.slice(2)[1];
-
+require('dotenv').config()
 var fs = require('fs');
 var request = require('request');
-var GITHUB_TOKEN = require('./secrets.js')
+
+var repositoryOwner = process.argv.slice(2)[0];
+var repositoryName = process.argv.slice(2)[1];
 
 var options = {
   url: 'https://api.github.com/repos/' + repositoryOwner + '/' + repositoryName +'/contributors',
   headers: {
     'User-Agent': 'jonathandannel',
-    'Authorization': GITHUB_TOKEN
+    'Authorization': process.env.GITHUB_TOKEN
   }
 }
 
