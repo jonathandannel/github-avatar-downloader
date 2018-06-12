@@ -13,8 +13,8 @@ var options = {
   }
 }
 
-var saveAvatar = function(img, name) {
-  request.get(img)
+var saveAvatar = function(url, name) {
+  request.get(url)
          .on('response', function() {
            process.stdout.write('Downloading avatar for user => ' + name + '\n');
          })
@@ -29,10 +29,8 @@ var getAvatars = function(options, save) {
     } else {
       var rawData = JSON.parse(body);
       rawData.forEach(function(element) {
-        var avatarUrl = element.avatar_url;
-        var avatarName = element.login;
-        saveAvatar(avatarUrl, avatarName);
-      });
+        saveAvatar(element.avatar_url, element.login);
+      })
     }
   });
 }
