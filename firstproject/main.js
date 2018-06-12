@@ -24,7 +24,7 @@ var saveAvatar = function(url, name) {
 var getAvatars = function(options, save) {
   request.get(options, function(error, response, body) {
     if (error) {
-      console.log("Error! Aborting.");
+      console.log('ERROR: ' + response.statusCode);
       throw err;
     } else {
       var rawData = JSON.parse(body);
@@ -35,4 +35,4 @@ var getAvatars = function(options, save) {
   });
 }
 
-getAvatars(options, saveAvatar);
+process.argv.slice(2).length === 2 ? getAvatars(options, saveAvatar) : console.log("ERROR: Only 2 arguments allowed: 'REPO_OWNER', 'REPO_NAME'");
