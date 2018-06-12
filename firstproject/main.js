@@ -15,21 +15,23 @@ var options = {
 
 var saveAvatar = function(img, name) {
   request.get(img)
+         .on('response', function() {
+           process.stdout.write('Downloading avatar for user => ' + name + '\n');
+         })
          .pipe(fs.createWriteStream('./avatars/' + name + '.png'))
 };
 
 var getAvatars = function(options, save) {
   request.get(options, function(error, response, body) {
     if (error) {
-      console.log("Error! Aborting");
+      console.log("Error! Aborting.");
       throw err;
     } else {
       var rawData = JSON.parse(body);
-      console.log(rawData);
       rawData.forEach(function(element) {
         var avatarUrl = element.avatar_url;
         var avatarName = element.login;
-        saveAvatar(avatarUrl, avatarName)
+        saveAvatar(avatarUrl, avatarName);
       });
     }
   });
